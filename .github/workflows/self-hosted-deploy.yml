@@ -1,0 +1,18 @@
+name: Deploy with Self-hosted Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # Используем наш собственный раннер!
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Show server info
+      run: |
+        echo "Deploying with self-hosted runner..."
+        echo "Server: $(hostname)"
+        echo "CPU: $(nproc) cores"
+        echo "Files deployed successfully!"
