@@ -1,0 +1,21 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Deploy files
+      run: |
+        echo "Deploying files..."
+        sudo mkdir -p /var/www/html
+        sudo cp -r . /var/www/html/
+        echo "Deployment done!"
