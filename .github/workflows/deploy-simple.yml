@@ -1,0 +1,21 @@
+name: Deploy Simple
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Create test directory and copy files
+      run: |
+        echo "Current user: $(whoami)"
+        echo "Working in: $(pwd)"
+        mkdir -p ~/deployed-website
+        cp -r * ~/deployed-website/
+        echo "Files deployed to home directory"
+        ls -la ~/deployed-website/
